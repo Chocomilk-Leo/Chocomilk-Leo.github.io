@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>HMM使用与结果解读 | Lyc&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="hmmscan介绍HMMER用于搜索序列数据库中的蛋白质或DNA序列的同源物，并进行序列比对。借助HMMER，可以对序列数据库查询单个序列的，HMMER的优势体现于对一个序列家族的多个实例的排列的查询。HMMER对查询进行剖析，为替换、插入和删除配置一个针对位置的计分系统。HMMER配置文件是被称为 “配置文件隐马尔可夫模型”（profile HMMs）的概率模型（Krogh等人，1994；Edd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HMM使用与结果解读">
+<meta property="og:url" content="https://chocomilk-leo.github.io/chocomilk-leo.github.io/2022/05/27/HMM3/index.html">
+<meta property="og:site_name" content="Lyc&#39;s blog">
+<meta property="og:description" content="hmmscan介绍HMMER用于搜索序列数据库中的蛋白质或DNA序列的同源物，并进行序列比对。借助HMMER，可以对序列数据库查询单个序列的，HMMER的优势体现于对一个序列家族的多个实例的排列的查询。HMMER对查询进行剖析，为替换、插入和删除配置一个针对位置的计分系统。HMMER配置文件是被称为 “配置文件隐马尔可夫模型”（profile HMMs）的概率模型（Krogh等人，1994；Edd">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-26T23:09:15.000Z">
+<meta property="article:modified_time" content="2022-05-26T23:42:00.695Z">
+<meta property="article:author" content="Lyc">
+<meta property="article:tag" content="Manual">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/chocomilk-leo.github.io/atom.xml" title="Lyc's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/chocomilk-leo.github.io/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/chocomilk-leo.github.io/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/chocomilk-leo.github.io/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/chocomilk-leo.github.io/" id="logo">Lyc&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/chocomilk-leo.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/chocomilk-leo.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/chocomilk-leo.github.io/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chocomilk-leo.github.io/chocomilk-leo.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-HMM3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/chocomilk-leo.github.io/2022/05/27/HMM3/" class="article-date">
+  <time class="dt-published" datetime="2022-05-26T23:09:15.000Z" itemprop="datePublished">2022-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      HMM使用与结果解读
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="hmmscan"><a href="#hmmscan" class="headerlink" title="hmmscan"></a>hmmscan</h1><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>HMMER用于搜索序列数据库中的蛋白质或DNA序列的同源物，并进行序列比对。借助HMMER，可以对序列数据库查询单个序列的，HMMER的优势体现于对一个序列家族的多个实例的排列的查询。HMMER对查询进行剖析，为替换、插入和删除配置一个针对位置的计分系统。HMMER配置文件是被称为 “配置文件隐马尔可夫模型”（profile HMMs）的概率模型（Krogh等人，1994；Eddy，1998；Durbin等人，1998）。<br>与BLAST、FASTA和其他基于旧的评分方法的序列比对和数据库搜索工具相比，HMMER凭借它的基础概率模型，能更准确，更有可能检测到距离较远的同源物。在过去，这种优势是以巨大的计算成本为代价的，在蛋白质搜索方面，HMM的实现比可比的BLAST搜索慢100倍，比DNA的BLAST搜索慢1000倍左右。搜索慢1000倍。在HMMER3.1中，HMMER现在基本上与蛋白质搜索的BLAST一样快，而在DNA搜索中大约比BLAST慢5-10倍。</p>
+<h1 id="1-工具"><a href="#1-工具" class="headerlink" title="1. 工具"></a>1. 工具</h1><p>hmm3(实验室服务器本地版本)</p>
+<h1 id="2-目的"><a href="#2-目的" class="headerlink" title="2. 目的"></a>2. 目的</h1><p>Input:<br>.fasta文件</p>
+<p>Output:<br>hmm预测结果</p>
+<h1 id="3-操作"><a href="#3-操作" class="headerlink" title="3. 操作"></a>3. 操作</h1><span id="more"></span>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p><strong>pipe-reading</strong></p>
+<p>输入可以用 ‘-‘(短横) 代替 文件名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hmmsearch globins4.hmm uniprot sprot.fasta</span><br></pre></td></tr></table></figure>
+
+<p>Pfam 数据库中每个编号代表一个蛋白质家族。Pfam 分 A 和 B 两个数据库，其中 A 数据库是经过手工校正的高质量数据库， B 数据库虽然质量低些，依然可以用来寻找蛋白质家族的保守位点。Pfam 最新 v27.0 版本的数据库中， A 数据库包含 14,836 个蛋白质家族编号（以 PF 开头）； B 数据库包含 20,000 个蛋白质家族编号 （以 PB 开头）。<br>使用 hmmscan 进行 Pfam 注释示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hmmscan -o out.txt --tblout out.tbl --noali -E 1e-5 ~/opt/biosoft/hmmer-3.1b2/Pfam-A.hmm file.fasta</span><br></pre></td></tr></table></figure>
+<p>ncbiresfam.hmm</p>
+<p>生成结果文件 out.txt 和 out.tbl<br>out.txt 文件信息比较全面，但是不好阅读；<br>out.tbl 文件则是表格形式的结果，是一般需要的结果。</p>
+<h1 id="4-结果分析"><a href="#4-结果分析" class="headerlink" title="4. 结果分析"></a>4. 结果分析</h1><p>结果按照E-values值从小到大排序，形式与blast类似。</p>
+<p>其中target name是每个目标序列的名称；</p>
+<p>query name是查询序列的名称；</p>
+<p>score是比对得分，分值越高说明越相似；</p>
+<p>E-value目标序列的期望值（统计意义）；</p>
+<p>最重要的是E-value值，值越小，越可信，相当于一个统计量。</p>
+<h2 id="tblout"><a href="#tblout" class="headerlink" title="tblout"></a>tblout</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">(1) target name: The name of the target sequence or profile.</span><br><span class="line">目标名称：目标序列或配置文件的名称。</span><br><span class="line"></span><br><span class="line">(2) accession:</span><br><span class="line">The accession of the target sequence or profile, or ’-’ if none.</span><br><span class="line">目标序列或图谱的访问号码，如果没有，则为&#x27;-&#x27;。</span><br><span class="line"></span><br><span class="line">(3) query name:</span><br><span class="line">The name of the query sequence or profile.</span><br><span class="line">查询序列或概况的名称。</span><br><span class="line"></span><br><span class="line">(4) accession: The accession of the query sequence or profile, or ’-’ if none.</span><br><span class="line">访问号码：查询序列或剖面图的访问号码，如果没有，则为&#x27;-&#x27;。</span><br><span class="line"></span><br><span class="line">(5) E-value (full sequence): The expectation value(statistical significance) of the target.This is a per query E-value; i.e. calculated as the expected number of false positives achieving this comparison’s score for a single query against the Z sequences in the target dataset. If you search with multiple queries and if you want to control the overall false positive rate of that search rather than the false positive rate per query, you will want to multiply this per-query E-value by how many queries you’re doing.</span><br><span class="line">E值（全序列）。目标的期望值（统计学意义）。这是每一个查询的E值；也就是说，计算为针对目标数据集中的Z个序列的单一查询达到该比较得分的假阳性的期望数。如果你用多个查询进行搜索，如果你想控制该搜索的总体假阳性率而不是每个查询的假阳性率，你将想把这个每个查询的E值乘以你正在进行的查询次数。</span><br><span class="line"></span><br><span class="line">(6) score (full sequence): The score (in bits) for this target/query comparison. It includes the biased-composition correction (the “null2” model).</span><br><span class="line">score（全序列）。该目标/查询比较的得分（比特）。它包括偏倚组合校正（&quot;null2 &quot;模型）。</span><br><span class="line"></span><br><span class="line">(7) Bias (full sequence): The biased-composition correction: the bit score difference contributed by the null2 model. High bias scores may be a red flag for a false positive, especially when the bias score is as large or larger than the overall bit score. It is difficult to correct for all possible ways in which a nonrandom but nonhomologous biological sequences can appear to be similar, such as short-period tandem repeats, so there are cases where the bias correction is not strong enough (creating false positives).</span><br><span class="line">偏差值（全序列）。偏向组合校正：由null2模型贡献的位分数差。高的偏倚分数可能是假阳性的红旗，特别是当偏倚分数与总体位分数一样大或更大时。很难对非随机但非同源的生物序列出现相似的所有可能方式进行校正，如短周期串联重复，所以在有些情况下，偏倚校正不够强（造成假阳性）。</span><br><span class="line"></span><br><span class="line">(8) E-value (best 1 domain): The E-value if only the single best-scoring domain envelope were found in the sequence, and none of the others. If this E-value isn’t good, but the full sequence E-value is good, this is a potential red flag. Weak hits, none of which are good enough on their own, are summing up to lift the sequence up to a high score. Whether this is Good or Bad is not clear; the sequence may contain several weak homologous domains, or it might contain a repetitive sequence that is hitting by chance (i.e. once one repeat hits, all the repeats hit).</span><br><span class="line">E值（最佳1个域）。如果在序列中只发现一个最好的域包络，而没有其他的域包络，则是E值。如果这个E值不好，但整个序列的E值却很好，这就是一个潜在的红旗。薄弱的命中，没有一个单独的足够好的，被加起来使序列达到一个高分。这是好还是坏还不清楚；该序列可能包含几个弱的同源域，或者它可能包含一个偶然命中的重复序列（即一旦一个重复命中，所有的重复都命中）。</span><br><span class="line"></span><br><span class="line">(9) score (best 1 domain): The bit score if only the single best-scoring domain envelope were found in the sequence, and none of the others. (Inclusive of the null2 bias correction.）</span><br><span class="line">分（最佳1域）。如果在序列中只找到一个最好的域包络，而没有其他的域包络，则为比特得分。(包括null2的偏差校正）。</span><br><span class="line"></span><br><span class="line">(10) bias (best 1 domain): The null2 bias correction that was applied to the bit score of the single best-scoring domain.</span><br><span class="line">bias（最佳1域）。应用于单个最佳得分域的位分数的null2偏差校正。</span><br><span class="line"></span><br><span class="line">(11) exp: Expected number of domains, as calculated by posterior decoding on the mean number of begin states used in the alignment ensemble. The tblout format is deliberately space-delimited (rather than tab-delimited) and justified into aligned columns, so these files are suitable both for automated parsing and for human examination. Tab-delimited data files are difficult for humans to examine and spot check. For this reason, we think tab-delimited files are a minor evil in the world. Although we occasionally receive shrieks of outrage about this, we stubbornly feel that space-delimited files are just as trivial to parse as tab-delimited files.</span><br><span class="line">预期的域数，通过对排列组合中使用的开始状态的平均数进行后验解码计算。</span><br><span class="line">tblout格式是特意以空格分隔的（而不是以制表符分隔的），并以对齐的列来表示，因此这些文件既适合于自动解析，也适合于人类检查。以制表符分隔的数据文件对人类来说很难检查和抽查。由于这个原因，我们认为以制表符分隔的文件是世界上的一个小恶魔。尽管我们偶尔会收到关于这一点的愤怒的尖叫声，但我们顽固地认为，空间分隔的文件与制表符分隔的文件一样容易解析。</span><br><span class="line"></span><br><span class="line">(12)reg: Number of discrete regions defined, as calculated by heuristics applied to posterior decoding of begin/end state positions in the alignment ensemble. The number of regions will generally be close to the expected number of domains. The more different the two numbers are, the less discrete the regions appear to be, in terms of probability mass. This usually means one of two things. On the one hand, weak homologous domains may be difficult for the heuristics to identify clearly. On the other hand, repetitive sequence may appear to have a high expected domain number (from lots of crappy possible alignments in the ensemble, no one of which is very convincing on its own, so no one region is discretely well-defined).</span><br><span class="line">定义的离散区域的数量，由应用于排列组合中开始/结束状态位置的后验解码的启发式方法计算。区域的数量一般会接近于预期的域的数量。这两个数字相差越大，就概率质量而言，区域的离散性就越小。这通常意味着两种情况中的一种。一方面，弱同源域可能难以被启发式方法清楚地识别。另一方面，重复序列可能看起来有很高的预期域数（来自集合中许多蹩脚的可能排列，其中没有一个单独的排列是非常有说服力的，所以没有一个区域是离散的、定义明确的）。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(13)clu: Number of regions that appeared to be multidomain, and therefore were passed to stochastic traceback clustering for further resolution down to one or more envelopes. This number is often zero.</span><br><span class="line">看起来是多域的区域的数量，因此被传递到随机回溯聚类，以进一步解析为一个或多个包络。这个数字通常为零。</span><br><span class="line"></span><br><span class="line">(14)ov: For envelopes that were defined by stochastic traceback clustering, how many of them overlap other envelopes.</span><br><span class="line">对于由随机回溯聚类定义的包络，其中有多少包络与其他包络重叠。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(15)env: The total number of envelopes defined, both by single envelope regions and by stochastic traceback clustering into one or more envelopes per region.</span><br><span class="line">由单一信封区域和随机回溯聚类定义的信封总数，每个区域都有一个或多个信封。</span><br><span class="line"></span><br><span class="line">(16)dom: Number of domains defined. In general, this is the same as the number of envelopes: for each envelope, we find an MEA (maximum expected accuracy) alignment, which defines the endpoints of the alignable domain.</span><br><span class="line">定义的域的数量。一般来说，这与包络的数量相同：对于每个包络，我们找到一个MEA（最大预期精度）对齐，它定义了可对齐域的端点。</span><br><span class="line"></span><br><span class="line">(17)rep: Number of domains satisfying reporting thresholds. If you’ve also saved a --domtblout file, there will be one line in it for each reported domain.</span><br><span class="line">满足报告阈值的域的数量。如果你还保存了一个-domtblout文件，其中会有每一个报告域的一行。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(18)inc: Number of domains satisfying inclusion thresholds.</span><br><span class="line">满足包含阈值的域的数量。</span><br><span class="line"></span><br><span class="line">(19)description of target: The remainder of the line is the target’s description line, as free text.</span><br><span class="line">目标的描述。该行的剩余部分是目标的描述行，为自由文本。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h1 id="X-原理"><a href="#X-原理" class="headerlink" title="X. 原理"></a>X. 原理</h1><p><a target="_blank" rel="noopener" href="https://brainwritings.com/what-is-hmmscan/#What_is_E_value">https://brainwritings.com/what-is-hmmscan/#What_is_E_value</a></p>
+<p>The Hidden Markov Model (HMM) is a relatively simple way to model sequential data. A hidden Markov model implies that the Markov Model underlying the data is hidden or unknown to you. More specifically, you only know observational data and not information about the states.</p>
+<h2 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h2><p>“Profiles” had been introduced by Gribskov and colleagues (Gribskov et al., 1987, 1990), and several other groups introduced similar approaches at about the same time, such as “flexible patterns” (Barton, 1990), and “templates”(Bashford et al., 1987; Taylor, 1986). The term “profile” has stuck.4 All profile meth- ods (including PSI-BLAST (Altschul et al., 1997)) are more or less statistical descriptions of the consen- sus of a multiple sequence alignment. They use position-specific scores for amino acids or nucleotides (residues) and position specific penalties for opening and extending an insertion or deletion. Traditional pairwise alignment (for example, BLAST (Altschul et al., 1990), FASTA (Pearson and Lipman, 1988), or the Smith&#x2F;Waterman algorithm (Smith and Waterman, 1981)) uses position-independent scoring parame- ters. This property of profiles captures important information about the degree of conservation at various positions in the multiple alignment, and the varying degree to which gaps and insertions are permitted.</p>
+<h2 id="hmmformat"><a href="#hmmformat" class="headerlink" title="hmmformat"></a>hmmformat</h2><blockquote>
+<p>hmm extension. It is an ASCII file containing a lot of header and descriptive records followed by large numerical matrix which holds probabilistic model of the motif. The file of this format is useful to search against sequnce databases to find out other proteins which share the same motif.</p>
+</blockquote>
+<h2 id="E-value"><a href="#E-value" class="headerlink" title="E value"></a>E value</h2><blockquote>
+<p>E-value is a parameter that describes the number of hits one can “expect” to see by chance when searching a database of a particular size. It decreases exponentially as the Score (S) of the match increases. Essentially, the E value describes the random background noise.</p>
+<p> The statistical significance (expectation values, or E-values) of HMMER3 sequence scores is determined by using recent theoretical conjectures about the statistical properties of integrated log-odds scores which have been supported by numerical simulation experiments (Eddy, 2008).<br>(<a target="_blank" rel="noopener" href="http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf">http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf</a>)</p>
+</blockquote>
+<h2 id="HMM"><a href="#HMM" class="headerlink" title="HMM"></a>HMM</h2><blockquote>
+<p>The Hidden Markov Model (HMM) is a relatively simple way to model sequential data. A hidden Markov model implies that the Markov Model underlying the data is hidden or unknown to you. More specifically, you only know observational data and not information about the states.</p>
+</blockquote>
+<h2 id="Pfam"><a href="#Pfam" class="headerlink" title="Pfam"></a>Pfam</h2><p>Two of the most popular secondary databases recognise conserved protein domains within a protein sequence. These databases are Pfam and Interpro and they are hosted by EMBL-EBI.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hmmscan [-options]</span>  </span><br><span class="line">​</span><br><span class="line">-h</span><br><span class="line"> 显示帮助信息</span><br><span class="line">-o FILE</span><br><span class="line"> 将结果输出到指定的文件中。默认是输出到标准输出。</span><br><span class="line">--tblout FILE</span><br><span class="line"> 将蛋白质家族的结果以表格形式输出到指定的文件中。默认不输出该文件。</span><br><span class="line">--domtblout FILE</span><br><span class="line"> 将蛋白结构域的比对结果以表格形式输出到指定的文件中。默认不输出该文件。该表格中包含query序列起始结束位点与目标序列起始结束位点的匹配信息。</span><br><span class="line">--acc</span><br><span class="line"> 在输出结果中包含 PF 的编号，默认是蛋白质家族的名称。</span><br><span class="line">--noali</span><br><span class="line"> 在输出结果中不包含比对信息。输出文件的大小则会更小。</span><br><span class="line">-E FLOAT    default:10.0</span><br><span class="line"> 设定 E_value 阈值，推荐设置为 1e-5 。</span><br><span class="line">-T FLOAT</span><br><span class="line"> 设定 Score 阈值。</span><br><span class="line">--domE FLOAT    default:10.0</span><br><span class="line"> 设定 E_value 阈值。该参数和 -E 参数类似，不过是 domain 比对设定的值。</span><br><span class="line">--cpu</span><br><span class="line"> 多线程运行的CPU。默认应该是大于1的，表示支持多线程运行。但其实估计一般一个hmmscan程序利用150%个CPU。并且若进行并行化调用hmmscan，当并行数高于4的时候，会报错：Fatal exception (source file esl_threads.c, line 129)。这时，设置--cpu的值为1即可。</span><br></pre></td></tr></table></figure>
+
+<h1 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h1><ul>
+<li><p>.hmm 和 .HMM区别？一样用？</p>
+<blockquote>
+<p>大概没有</p>
+</blockquote>
+</li>
+<li><p>antiSMASH也有HMM，what’s the difference?</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">这样就完成了自己的hmm库建立。</span><br><span class="line">然后再调用hmmscan就可以了：</span><br><span class="line"></span><br><span class="line">hmmscan [options] hmmdb seqfile</span><br><span class="line">hmmdb 依赖的数据库，</span><br><span class="line">seqfile 你的文件</span><br><span class="line">-h 查看 options</span><br><span class="line"></span><br><span class="line">我把它挂起了：</span><br><span class="line">nohup hmmscan -o vog_out/output_19292.txt --tblout vog_out/output_19292_pro.tbl --domtblout</span><br><span class="line">vog_out/output_19292_pro.dom -E 1e-5 VOGs.hmms my_data/1kbvotu/virsorter_vhmm_result_prot.fasta &amp;</span><br><span class="line">-o FILE</span><br><span class="line"></span><br><span class="line">将结果输出到指定的文件中。默认是输出到标准输出。</span><br><span class="line"></span><br><span class="line">–tblout FILE</span><br><span class="line"></span><br><span class="line">将蛋白质家族的结果以表格形式输出到指定的文件中。默认不输出该文件。</span><br><span class="line"></span><br><span class="line">–domtblout FILE</span><br><span class="line"></span><br><span class="line">将蛋白结构域的比对结果以表格形式输出到指定的文件中。默认不输出该文件。该表格中包含query序列起始结束位点与目标序列起始结束位点的匹配信息。</span><br><span class="line"></span><br><span class="line">–acc</span><br><span class="line"></span><br><span class="line">在输出结果中包含 PF 的编号，默认是蛋白质家族的名称。</span><br><span class="line"></span><br><span class="line">–noali</span><br><span class="line"></span><br><span class="line">在输出结果中不包含比对信息。输出文件的大小则会更小。</span><br><span class="line"></span><br><span class="line">-E FLOAT default:10.0</span><br><span class="line"></span><br><span class="line">设定 E_value 阈值，推荐设置为 1e-5 。（看到的蛮多文章都是-5）</span><br><span class="line"></span><br><span class="line">-T FLOAT （目前没有看到太多设定）</span><br><span class="line"></span><br><span class="line">设定 Score 阈值。</span><br><span class="line"></span><br><span class="line">–domE FLOAT default:10.0</span><br><span class="line"></span><br><span class="line">设定 E_value 阈值。该参数和 -E 参数类似，不过是 domain 比对设定的值。</span><br><span class="line"></span><br><span class="line">–cpu</span><br><span class="line"></span><br><span class="line">多线程运行的CPU。默认应该是大于1的，表示支持多线程运行。但其实估计一般一个hmmscan程序利用150%个CPU。并且若进行并行化调用hmmscan，当并行数高于4的时候，会报错：Fatal exception (source file esl_threads.c, line 129)。这时，设置–cpu的值为1即可。</span><br></pre></td></tr></table></figure>
+
+<p>主要分析：AAC，ANT，APH_3p-NCBIFAM，AAC_6p_Ib-NCBIFAM, ANT_9-NCBIFAM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SearchingaprofileHMMdatabasewithaquerysequence</span><br><span class="line">Step1:createanHMMdatabaseflatfile</span><br><span class="line">Step2:compressandindextheflatfilewithhmmpress</span><br><span class="line">Step3:searchtheHMMdatabasewithhmmscan</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chocomilk-leo.github.io/chocomilk-leo.github.io/2022/05/27/HMM3/" data-id="cl3q72by20001zcpj6140c1mt" data-title="HMM使用与结果解读" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/chocomilk-leo.github.io/tags/Manual/" rel="tag">Manual</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          通过机器学习生物信息学方法从生物合成基因簇预测生物活性
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/chocomilk-leo.github.io/tags/Manual/" rel="tag">Manual</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chocomilk-leo.github.io/tags/Natural-product/" rel="tag">Natural product</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chocomilk-leo.github.io/tags/Paper-Reading/" rel="tag">Paper Reading</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/chocomilk-leo.github.io/tags/Manual/" style="font-size: 10px;">Manual</a> <a href="/chocomilk-leo.github.io/tags/Natural-product/" style="font-size: 10px;">Natural product</a> <a href="/chocomilk-leo.github.io/tags/Paper-Reading/" style="font-size: 10px;">Paper Reading</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/chocomilk-leo.github.io/archives/2022/05/">五月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/">通过机器学习生物信息学方法从生物合成基因簇预测生物活性</a>
+          </li>
+        
+          <li>
+            <a href="/chocomilk-leo.github.io/2022/05/27/HMM3/">HMM使用与结果解读</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Lyc<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/chocomilk-leo.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/chocomilk-leo.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/chocomilk-leo.github.io/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/chocomilk-leo.github.io/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/chocomilk-leo.github.io/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

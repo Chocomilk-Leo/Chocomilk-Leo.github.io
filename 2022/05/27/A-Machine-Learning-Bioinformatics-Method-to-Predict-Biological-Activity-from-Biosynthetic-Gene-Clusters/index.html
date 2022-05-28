@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>通过机器学习生物信息学方法从生物合成基因簇预测生物活性 | Lyc&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="[NPF] natural-product-function论文链接：A Machine Learning Bioinformatics Method to Predict Biological Activity from Biosynthetic Gene Clusters | Journal of Chemical Information and Modeling (acs.org) 相关网页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过机器学习生物信息学方法从生物合成基因簇预测生物活性">
+<meta property="og:url" content="https://chocomilk-leo.github.io/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/index.html">
+<meta property="og:site_name" content="Lyc&#39;s blog">
+<meta property="og:description" content="[NPF] natural-product-function论文链接：A Machine Learning Bioinformatics Method to Predict Biological Activity from Biosynthetic Gene Clusters | Journal of Chemical Information and Modeling (acs.org) 相关网页">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-26T23:09:15.000Z">
+<meta property="article:modified_time" content="2022-05-28T17:27:10.846Z">
+<meta property="article:author" content="Lyc">
+<meta property="article:tag" content="Paper Reading">
+<meta property="article:tag" content="Natural product">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/chocomilk-leo.github.io/atom.xml" title="Lyc's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/chocomilk-leo.github.io/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/chocomilk-leo.github.io/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/chocomilk-leo.github.io/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/chocomilk-leo.github.io/" id="logo">Lyc&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/chocomilk-leo.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/chocomilk-leo.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/chocomilk-leo.github.io/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chocomilk-leo.github.io/chocomilk-leo.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/" class="article-date">
+  <time class="dt-published" datetime="2022-05-26T23:09:15.000Z" itemprop="datePublished">2022-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      通过机器学习生物信息学方法从生物合成基因簇预测生物活性
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="NPF-natural-product-function"><a href="#NPF-natural-product-function" class="headerlink" title="[NPF] natural-product-function"></a>[NPF] natural-product-function</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://pubs.acs.org/doi/10.1021/acs.jcim.0c01304">A Machine Learning Bioinformatics Method to Predict Biological Activity from Biosynthetic Gene Clusters | Journal of Chemical Information and Modeling (acs.org)</a></p>
+<p>相关网页：<a target="_blank" rel="noopener" href="https://github.com/allie-walker/Natural-product-function">allie-walker&#x2F;Natural-product-function: scripts for predicting natural product activity from biosynthetic gene cluster sequences (github.com)</a></p>
+<p>测试用例：MK613929</p>
+<p>来源论文：<a target="_blank" rel="noopener" href="https://jbioleng.biomedcentral.com/articles/10.1186/s13036-019-0196-x#availability-of-data-and-materials">Discovery and engineering of an endophytic Pseudomonas strain from Taxus chinensis for efficient production of zeaxanthin diglucoside | Journal of Biological Engineering | Full Text (biomedcentral.com)</a></p>
+<span id="more"></span>
+
+<h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><p>先看 <a target="_blank" rel="noopener" href="https://github.com/allie-walker/Natural-product-function">allie-walker&#x2F;Natural-product-function: scripts for predicting natural product activity from biosynthetic gene cluster sequences (github.com)</a> 的README部分：</p>
+<blockquote>
+<p>Natural_product_BGC_activity_prediction.ipnyb is an python notebook containing code to optimize, train, and use machine learning models to predict natural product activity from biosynthetic gene clusters. We have also provided a command line version of the script in the cluster_function_prediction.py. The activity prediction program requires ouptut files from antiSMASH and Resistance Gene Identifier (RGI) (the txt file not the JSON). We used antiSMASH version 4.0 and RGI version 3.2.1 with database version 1.1.9, to produce the results described in our manuscript. Since our initial development of the tool newer versions of antiSMASH and RGI were released, we have added support for antiSMASH 5 and RGI 5 to the command line version of our tool and are planning to add support to the python notebook version. Initial analysis showed no significant change in classifier accuracy when updating to the newer versions of antiSMASH and RGI.</p>
+<p>Code is developed to run in python 3 (3.8.3). Packages required, version used for publication in parentheses:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Biopython (1.77)</span><br><span class="line"></span><br><span class="line">Numpy (1.18.5)</span><br><span class="line"></span><br><span class="line">Scikit learn (0.23.1)</span><br><span class="line"></span><br><span class="line">Matplotlib (3.2.2)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> To generate the proper files, antiSMASH 4 should be run with the command:</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">antismash --verbose --outputfolder OUTPUT_FOLDER --statusfile status.txt --full-hmmer --borderpredict INPUT_FILE</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> and RGI 3 shoud be run with the command:</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rgi -i INPUT_FASTA_FILE -o OUTPUT_FILE --loose_criteria YES --verbose ON</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Instructions for python notebook: Throughout the cells the classification variable determines which binary classification problem predictions are made for. Options are “antibacterial”, “antieuk” (which predicts antifungal, antitumor, or cytotoxic activity), “antifungal”, “cytotoxic_antitumor”, “antigramneg”, or “antigrampos.</p>
+<p>Cells 1-4 contain methods for processing the training data. These only need to be run if the training set data have been updated.</p>
+<p>Cell 5 contains methods used by cells 6-7 and should be run before running those cells.</p>
+<p>Cell 6 determines optimal parameters for the different classifiers.</p>
+<p>Cell 7 performs cross validation and evaluates classifers by various metrics.</p>
+<p>Cell 8 uses the logisitic regression coefficients to analyze which features are most important for the prediction.</p>
+<p>Cells 9 and 10 are the only cells that need to be run to make predictions for novel BGCs.</p>
+<p>Cell 9 extracts the features from the antiSMASH and rgi output files for the BGC. antiSMASH output genbank files should be saved in the BGCs_for_prediction&#x2F;antiSMASH folder and rgi output text files should be saved in the BGCs_for_prediction&#x2F;CARD folder. antiSMASH and RGI files must have matching names so the program knows that they are for the same cluster (e.g. if the antiSMASH genbank file is called cluster1.gbk, the corresponding RGI file must be callsed cluster1.txt).</p>
+<p>Predictions can be run either with or without sequence similarity network (sub-PFAM domain) features. Running cell 9 with SSN domains makes the program significantly slower as genes from the cluster need to be blasted against all training set SSN proteins to determine which, if any, sub-PFAM domain the gene belongs to. Running it without SSN features does not significantly decrease the accuracy of the predictions. To run with out SSN features set include_SSN &#x3D; False in both cell 9 and 10. To run with SSN features set include_SSN &#x3D; True in both cell 9 and 10 and set the blast_exe variable in cell 9 equal to the path to the blastp executable on your computer.</p>
+<p>Cell 10 runs the predictions on the features extracted by cell 9. The classification variable determines which binary prediction will be made, options are “antibacterial”, “antieuk” (which predicts antifungal, antitumor, or cytotoxic activity), “antifungal”, “cytotoxic_antitumor”, “antigramneg”, or “antigrampos”.</p>
+<p>Instructions for command line tool: requirements.txt contains all required packages for the command line tool.</p>
+<p>To run the command line tool enter:</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python cluster_function_prediction.py &quot;filename of antismash cluster gbk file&quot; &quot;filename of rgi txt file&quot;</span><br></pre></td></tr></table></figure>
+
+<p>optional arguments include:</p>
+<ul>
+<li>-output - directory where predictions should be saved, current directory by default</li>
+<li>-seed - random seed for predictions</li>
+<li>-no_SSN - use this flag to run without SSN features, makes predictions faster with minimal accuracy cost</li>
+<li>-blastp_path - path to blastp executable, by default assumes blastp is already in PATH variable</li>
+<li>-write_features - directory to write features to, if not defined features will not be saved</li>
+<li>-antismash_version antiSMASH version used to generate antiSMASH input file, support for 4 or 5, default 5</li>
+<li>-rgi_version RGI version to generate RGI input file, support for 3 or 5, default 5</li>
+</ul>
+<p>We have also supplied a Dockerfile that can be used to create a Docker image to run the command line tool. To create the docker image use the command: docker build -t function_prediction_docker_img .</p>
+<p>To run the docker use the command: docker run –volume EXACT_PATH_TO_DIRECTORY_WITH_INPUTS_AND_OUTPUTS:&#x2F;src&#x2F;input function_prediction_docker_image .&#x2F;input&#x2F;ANTISMASH_FILENAME .&#x2F;input&#x2F;RGI_FILENAME –output .&#x2F;input&#x2F;OUTPUT_FOLDERNAME additional arguments from the command line tool can also be added to this command</p>
+<p>看完知道需要先准备antiSMASH和rgi的运行结果，然后两者的结果一起作为natural-product-function的输入</p>
+<p>To generate the proper files, antiSMASH 4 should be run with the command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">antismash --verbose --outputfolder OUTPUT_FOLDER --statusfile status.txt --full-hmmer --borderpredict INPUT_FILE</span><br></pre></td></tr></table></figure>
+<p>and RGI 3 shoud be run with the command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rgi -i INPUT_FASTA_FILE -o OUTPUT_FILE --loose_criteria YES --verbose ON</span><br></pre></td></tr></table></figure>
+
+<p>但教程里的命令已经过时</p>
+<p>重新调整命令，步骤如下：</p>
+<ol>
+<li><p>准备 MK613929.fasta 文件</p>
+</li>
+<li><p>进入conda的antiSMASH环境</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate bgc</span><br></pre></td></tr></table></figure>
+
+<p>[AntiSmash_requirements.jpg]</p>
+<p><em>环境配置的截图参考各软件版本</em></p>
+<ol start="3">
+<li>运行antismash</li>
+</ol>
+<p><strong>命令：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">antismash MK613929.fasta --genefinding-tool prodigal</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果：</strong></p>
+<p>生成了一个新目录，内容如下</p>
+<ol start="4">
+<li>进入conda的rgi环境</li>
+</ol>
+<p><em>环境配置的截图参考各软件版本</em></p>
+<ol start="5">
+<li>运行rgi</li>
+</ol>
+<p><strong>命令：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rgi main -i MK613929.fasta -o rgi_MK613929</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果：</strong></p>
+<p>在原目录下生成了结果</p>
+<p>结果.jpg</p>
+<ol start="6">
+<li>运行natural-product-function</li>
+</ol>
+<p>命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 cluster_function_prediction.py /hdata/tmp/seq/anotherANTISMASH/MK613929/MK613929.gbk /hdata/tmp/seq/anotherRGI/rgi_MK613929.txt`</span><br></pre></td></tr></table></figure>
+
+
+<p>结果：<br>结果.jpg</p>
+<h1 id="开荒记录"><a href="#开荒记录" class="headerlink" title="开荒记录"></a>开荒记录</h1><ul>
+<li>卡在了调不到sklearn的包</li>
+</ul>
+<p>卡住.jpg</p>
+<ul>
+<li>找不到训练集合</li>
+<li>cluster_function_prediction.py要放在环境里（right，程序会在环境里面找其他模块, 比如：cluster_function_prediction_tools.py）</li>
+<li>程序运行以后找不到训练集数据，见报错“did not find file containing training data, please keep script located in directory downloaded from github”</li>
+<li>现在： python3 cluster_function_prediction.py &#x2F;hdata&#x2F;tmp&#x2F;seq&#x2F;anotherANTISMASH&#x2F;MK613929&#x2F;MK613929.gbk &#x2F;hdata&#x2F;tmp&#x2F;seq&#x2F;anotherRGI&#x2F;rgi_MK613929.txt， 任然跑不通。不是缺模块，是程序找不到 训练集数据</li>
+<li>github (<br><a target="_blank" rel="noopener" href="https://github.com/allie-walker/Natural-product-function">https://github.com/allie-walker/Natural-product-function)的Readme介绍</a>%E7%9A%84Readme%E4%BB%8B%E7%BB%8D)</li>
+</ul>
+<p>， tranining data 在目录RGI_output下面。和 antiSMASH_output</p>
+<ul>
+<li>另外，运行的时候，说： .&#x2F;cluster_function_prediction.py:159: DeprecationWarning: ‘U’ mode is deprecated</li>
+</ul>
+<p>record &#x3D; SeqIO.read(open(antismash_infilename, ‘rU’),”genbank”)</p>
+<p>这个 ‘rU’  模式已经不用了？有没有替代的？</p>
+<p>‘rU’改成’r’应该就可以了</p>
+<p>计算结果显示:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/home/dming/test/npf/Natural-product-function/readInputFiles.py:17: UserWarning: no pfam features found, make sure to run antiSMASH with --fullhmmer option</span><br><span class="line"></span><br><span class="line">warnings.warn(&quot;no pfam features found, make sure to run antiSMASH with --fullhmmer option&quot;)</span><br><span class="line"></span><br><span class="line">/home/dming/test/npf/Natural-product-function/readInputFiles.py:18: UserWarning: if antiSMASH was run with fullhmmer then this BGC does not have enough similarity to the training set for useful predictions</span><br><span class="line"></span><br><span class="line">warnings.warn(&quot;if antiSMASH was run with fullhmmer then this BGC does not have enough similarity to the training set for useful predictions&quot;)</span><br><span class="line"></span><br><span class="line">/home/dming/test/npf/Natural-product-function/readInputFiles.py:20: UserWarning: no resistance features found, double check RGI input file</span><br><span class="line"></span><br><span class="line">warnings.warn(&quot;no resistance features found, double check RGI input file&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>npf 提示（警告）说，找不到 跟查询序列相似的 已知蛋白家族、和跟已知抗性基因库相似的自抗基因。</p>
+<p>重跑antismash</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">antismash /hdata/tmp/seq/MK613929.fasta --genefinding-tool prodigal --fullhmmer`</span><br><span class="line">ylu@hilbert:/hdata/tmp/seq/antismash_MK$ antismash /hdata/tmp/seq/MK613929.fasta --genefinding-tool prodigal --fullhmmer</span><br></pre></td></tr></table></figure>
+
+<p>重新运行rgi</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /hdata/tmp/seq/rgi_MK/</span><br><span class="line"></span><br><span class="line">conda activate rgi</span><br><span class="line"></span><br><span class="line">rgi main -i /hdata/tmp/seq/MK613929.fasta -o rgi_MK613929</span><br></pre></td></tr></table></figure>
+
+<p>重新运行Natural-product-function</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 cluster_function_prediction.py /hdata/tmp/seq/antismash_MK/MK613929/MK613929.gbk /hdata/tmp/seq/rgi_MK/rgi_MK613929.txt</span><br></pre></td></tr></table></figure>
+
+<h1 id="认知-amp-评价"><a href="#认知-amp-评价" class="headerlink" title="认知&amp;评价"></a>认知&amp;评价</h1><blockquote>
+<p>npf 可能是专门针对 筛查 （新？）抗生素 而开发的。运行的例子，表明它基本上是在做这样的事情： 即在给定的基因组里面，找出可能的抗性基因，然后综合使用 card&#x2F;pfam&#x2F;efi 等工具判断其产物 是 抗生素等 概率有多大</p>
+</blockquote>
+<blockquote>
+<p>看起来，其筛查等能力应该没有超过 card 数据库力所能及的范围。不过，它倒是使用了现在很多 groups 用到的<strong>酶功能分析的工具 —-即EFI 工具</strong>—这一点还是值得学习的。换句话说，**我们可以在后续的coding 中，使用EFI来提高对基因功能的注释的准确度和精度</p>
+</blockquote>
+<blockquote>
+<p>npf提高了一个综合使用 card数据库、特别是 EFI 库的方法，值得借鉴；这一点可以用到我们手头的抗性基因数据库构建&#x2F;预测的工作中。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chocomilk-leo.github.io/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/" data-id="cl3q72by00000zcpjh9dj2zyx" data-title="通过机器学习生物信息学方法从生物合成基因簇预测生物活性" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/chocomilk-leo.github.io/tags/Natural-product/" rel="tag">Natural product</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/chocomilk-leo.github.io/tags/Paper-Reading/" rel="tag">Paper Reading</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/chocomilk-leo.github.io/2022/05/27/HMM3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">HMM使用与结果解读</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/chocomilk-leo.github.io/tags/Manual/" rel="tag">Manual</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chocomilk-leo.github.io/tags/Natural-product/" rel="tag">Natural product</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chocomilk-leo.github.io/tags/Paper-Reading/" rel="tag">Paper Reading</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/chocomilk-leo.github.io/tags/Manual/" style="font-size: 10px;">Manual</a> <a href="/chocomilk-leo.github.io/tags/Natural-product/" style="font-size: 10px;">Natural product</a> <a href="/chocomilk-leo.github.io/tags/Paper-Reading/" style="font-size: 10px;">Paper Reading</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/chocomilk-leo.github.io/archives/2022/05/">五月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/">通过机器学习生物信息学方法从生物合成基因簇预测生物活性</a>
+          </li>
+        
+          <li>
+            <a href="/chocomilk-leo.github.io/2022/05/27/HMM3/">HMM使用与结果解读</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Lyc<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/chocomilk-leo.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/chocomilk-leo.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/chocomilk-leo.github.io/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/chocomilk-leo.github.io/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/chocomilk-leo.github.io/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
