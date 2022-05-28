@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/chocomilk-leo.github.io/2022/03/09/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/</url>
-    <content><![CDATA[<p>title: 通过机器学习生物信息学方法从生物合成基因簇预测生物活性<br>date: 2022-05-27 07:09:15<br>tags: [Paper Reading, Natural product]</p>
-<h1 id="NPF-natural-product-function"><a href="#NPF-natural-product-function" class="headerlink" title="[NPF] natural-product-function"></a>[NPF] natural-product-function</h1><p>论文链接：<a href="https://pubs.acs.org/doi/10.1021/acs.jcim.0c01304">A Machine Learning Bioinformatics Method to Predict Biological Activity from Biosynthetic Gene Clusters | Journal of Chemical Information and Modeling (acs.org)</a></p>
+    <title>通过机器学习生物信息学方法从生物合成基因簇预测生物活性</title>
+    <url>/chocomilk-leo.github.io/2022/05/27/A-Machine-Learning-Bioinformatics-Method-to-Predict-Biological-Activity-from-Biosynthetic-Gene-Clusters/</url>
+    <content><![CDATA[<h1 id="NPF-natural-product-function"><a href="#NPF-natural-product-function" class="headerlink" title="[NPF] natural-product-function"></a>[NPF] natural-product-function</h1><p>论文链接：<a href="https://pubs.acs.org/doi/10.1021/acs.jcim.0c01304">A Machine Learning Bioinformatics Method to Predict Biological Activity from Biosynthetic Gene Clusters | Journal of Chemical Information and Modeling (acs.org)</a></p>
 <p>相关网页：<a href="https://github.com/allie-walker/Natural-product-function">allie-walker&#x2F;Natural-product-function: scripts for predicting natural product activity from biosynthetic gene cluster sequences (github.com)</a></p>
 <p>测试用例：MK613929</p>
 <p>来源论文：<a href="https://jbioleng.biomedcentral.com/articles/10.1186/s13036-019-0196-x#availability-of-data-and-materials">Discovery and engineering of an endophytic Pseudomonas strain from Taxus chinensis for efficient production of zeaxanthin diglucoside | Journal of Biological Engineering | Full Text (biomedcentral.com)</a></p>
@@ -141,6 +140,10 @@
 <p>npf提高了一个综合使用 card数据库、特别是 EFI 库的方法，值得借鉴；这一点可以用到我们手头的抗性基因数据库构建&#x2F;预测的工作中。</p>
 </blockquote>
 ]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Natural product</tag>
+      </tags>
   </entry>
   <entry>
     <title>HMM使用与结果解读</title>
