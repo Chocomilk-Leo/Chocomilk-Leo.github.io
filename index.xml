@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#39;s Blog</title>
+    <link>https://chocomilk-leo.github.io/chocomilk-leo.github.io/</link>
+    <description>Recent content on C&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Oct 2022 01:06:34 +0800</lastBuildDate><atom:link href="https://chocomilk-leo.github.io/chocomilk-leo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bioinfo</title>
+      <link>https://chocomilk-leo.github.io/chocomilk-leo.github.io/post/bioinfo/</link>
+      <pubDate>Thu, 13 Oct 2022 01:06:34 +0800</pubDate>
+      
+      <guid>https://chocomilk-leo.github.io/chocomilk-leo.github.io/post/bioinfo/</guid>
+      <description>7 非编码RNA 特征、识别、功能预测、编码潜能、注释 分类 位置 长短 功能 microRNA 生物合成 生信分析 circRNA 生物合成、特性、主要功能 软件 其他干扰 siRNA ta-siRNA piRNA 其他 tmRNA snRNA
+8 蛋白质组学 分离鉴定技术 二维电泳-质谱技术 一维 同位素 SELDI-TOF-MS 蛋白质芯片 数据库 翻译后修饰 基于序列 如何鉴定 蛋白质分选/定向转运 定义：核糖体合成，运至细胞特定部位 子主题 1 蛋白质互作
+9 系统生物学
+10 合成生物学
+11 分子进化与系统发育
+12 统计学习与推理
+13 编程基础
+14 新一代测序 第二代</description>
+    </item>
+    
+  </channel>
+</rss>
