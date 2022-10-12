@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="referrer" content="never" />
+  <meta name="generator" content="Hugo 0.104.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>  
+
+  <title>Natural product function &middot; C&#39;s Blog</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="Chocomilk-Leo.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="Chocomilk-Leo.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="Chocomilk-Leo.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="Chocomilk-Leo.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.loli.net/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="Chocomilk-Leo.github.io/"></a>
+      <a class="site-title" href="Chocomilk-Leo.github.io/">
+        <div class="main-title"><h1>Itten's</h1></div>
+        <div class="main-title"><h1>Blog</h1></div>
+      </a>
+      <p class="lead">
+       There is only one thing in the world worse than being talked about, and that is not being talked about. 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="Chocomilk-Leo.github.io/">Home</a> </li>
+        <li><a href="Chocomilk-Leo.github.io/posts/"> Archives </a></li><li><a href="Chocomilk-Leo.github.io/photos/"> Photos </a></li><li><a href="Chocomilk-Leo.github.io/tags/"> Tags </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1 class="content-title">Natural product function</h1>
+  <div class="post-meta post-date"><time  style="display: inline-block" datetime=2022-10-12T06:28:58Z class="post-meta post-date">2022-10-12</time>
+
+   <div class="post-tags" style="display: inline-block; margin-left: 10px"><a style="margin-left: 5px" href="/tags/[]">#[]</a>
+   </div>
+
+  </div>
+  
+  <div class="post-content" style="margin-top: 20px">
+    <p>Natural-product-function
+论文
+A Machine Learning Bioinformatics Method to Predict Biological Activity from Biosynthetic Gene Clusters | Journal of Chemical Information and Modeling (acs.org)
+相关网页
+allie-walker/Natural-product-function: scripts for predicting natural product activity from biosynthetic gene cluster sequences (github.com)
+测试用例
+MK613929
+来源论文：Discovery and engineering of an endophytic Pseudomonas strain from Taxus chinensis for efficient production of zeaxanthin diglucoside | Journal of Biological Engineering | Full Text (biomedcentral.com)</p>
+<p>使用指南</p>
+<p>input：FASTA</p>
+<p>先看 allie-walker/Natural-product-function: scripts for predicting natural product activity from biosynthetic gene cluster sequences (github.com) 的README部分：</p>
+<p>Natural_product_BGC_activity_prediction.ipnyb is an python notebook containing code to optimize, train, and use machine learning models to predict natural product activity from biosynthetic gene clusters. We have also provided a command line version of the script in the cluster_function_prediction.py. The activity prediction program requires ouptut files from antiSMASH and Resistance Gene Identifier (RGI) (the txt file not the JSON). We used antiSMASH version 4.0 and RGI version 3.2.1 with database version 1.1.9, to produce the results described in our manuscript. Since our initial development of the tool newer versions of antiSMASH and RGI were released, we have added support for antiSMASH 5 and RGI 5 to the command line version of our tool and are planning to add support to the python notebook version. Initial analysis showed no significant change in classifier accuracy when updating to the newer versions of antiSMASH and RGI.
+Code is developed to run in python 3 (3.8.3). Packages required, version used for publication in parentheses:
+Biopython (1.77)
+Numpy (1.18.5)
+Scikit learn (0.23.1)
+Matplotlib (3.2.2)
+To generate the proper files, antiSMASH 4 should be run with the command:
+antismash &ndash;verbose &ndash;outputfolder OUTPUT_FOLDER &ndash;statusfile status.txt &ndash;full-hmmer &ndash;borderpredict INPUT_FILE
+and RGI 3 shoud be run with the command:
+rgi -i INPUT_FASTA_FILE -o OUTPUT_FILE &ndash;loose_criteria YES &ndash;verbose ON
+Instructions for python notebook: Throughout the cells the classification variable determines which binary classification problem predictions are made for. Options are &ldquo;antibacterial&rdquo;, &ldquo;antieuk&rdquo; (which predicts antifungal, antitumor, or cytotoxic activity), &ldquo;antifungal&rdquo;, &ldquo;cytotoxic_antitumor&rdquo;, &ldquo;antigramneg&rdquo;, or &ldquo;antigrampos.
+Cells 1-4 contain methods for processing the training data. These only need to be run if the training set data have been updated.
+Cell 5 contains methods used by cells 6-7 and should be run before running those cells.
+Cell 6 determines optimal parameters for the different classifiers.
+Cell 7 performs cross validation and evaluates classifers by various metrics.
+Cell 8 uses the logisitic regression coefficients to analyze which features are most important for the prediction.
+Cells 9 and 10 are the only cells that need to be run to make predictions for novel BGCs.
+Cell 9 extracts the features from the antiSMASH and rgi output files for the BGC. antiSMASH output genbank files should be saved in the BGCs_for_prediction/antiSMASH folder and rgi output text files should be saved in the BGCs_for_prediction/CARD folder. antiSMASH and RGI files must have matching names so the program knows that they are for the same cluster (e.g. if the antiSMASH genbank file is called cluster1.gbk, the corresponding RGI file must be callsed cluster1.txt).
+Predictions can be run either with or without sequence similarity network (sub-PFAM domain) features. Running cell 9 with SSN domains makes the program significantly slower as genes from the cluster need to be blasted against all training set SSN proteins to determine which, if any, sub-PFAM domain the gene belongs to. Running it without SSN features does not significantly decrease the accuracy of the predictions. To run with out SSN features set include_SSN = False in both cell 9 and 10. To run with SSN features set include_SSN = True in both cell 9 and 10 and set the blast_exe variable in cell 9 equal to the path to the blastp executable on your computer.
+Cell 10 runs the predictions on the features extracted by cell 9. The classification variable determines which binary prediction will be made, options are &ldquo;antibacterial&rdquo;, &ldquo;antieuk&rdquo; (which predicts antifungal, antitumor, or cytotoxic activity), &ldquo;antifungal&rdquo;, &ldquo;cytotoxic_antitumor&rdquo;, &ldquo;antigramneg&rdquo;, or &ldquo;antigrampos.
+Instructions for command line tool: requirements.txt contains all required packages for the command line tool.
+To run the command line tool enter:
+python cluster_function_prediction.py &ldquo;filename of antismash cluster gbk file&rdquo; &ldquo;filename of rgi txt file&rdquo;
+optional arguments include:
+&ndash;output - directory where predictions should be saved, current directory by default
+&ndash;seed - random seed for predictions
+&ndash;no_SSN - use this flag to run without SSN features, makes predictions faster with minimal accuracy cost
+&ndash;blastp_path - path to blastp executable, by default assumes blastp is already in PATH variable
+&ndash;write_features - directory to write features to, if not defined features will not be saved
+&ndash;antismash_version antiSMASH version used to generate antiSMASH input file, support for 4 or 5, default 5
+&ndash;rgi_version RGI version to generate RGI input file, support for 3 or 5, default 5
+We have also supplied a Dockerfile that can be used to create a Docker image to run the command line tool. To create the docker image use the command: docker build -t function_prediction_docker_img .
+To run the docker use the command: docker run &ndash;volume EXACT_PATH_TO_DIRECTORY_WITH_INPUTS_AND_OUTPUTS:/src/input function_prediction_docker_image ./input/ANTISMASH_FILENAME ./input/RGI_FILENAME &ndash;output ./input/OUTPUT_FOLDERNAME additional arguments from the command line tool can also be added to this command</p>
+<p>看完知道需要先准备antiSMASH和rgi的运行结果，然后两者的结果一起作为natural-product-function的输入</p>
+<p>To generate the proper files, antiSMASH 4 should be run with the command:
+antismash &ndash;verbose &ndash;outputfolder OUTPUT_FOLDER &ndash;statusfile status.txt &ndash;full-hmmer &ndash;borderpredict INPUT_FILE
+and RGI 3 shoud be run with the command:
+rgi -i INPUT_FASTA_FILE -o OUTPUT_FILE &ndash;loose_criteria YES &ndash;verbose ON</p>
+<p>但教程里的命令已经过时
+重新调整命令，步骤如下：</p>
+<ol>
+<li>准备 MK613929.fasta 文件</li>
+<li>进入conda的antiSMASH环境
+conda activate bgc</li>
+</ol>
+<p>环境配置的截图参考各软件版本
+3. 运行antismash</p>
+<p>命令：
+antismash MK613929.fasta &ndash;genefinding-tool prodigal</p>
+<p>结果：
+生成了一个新目录，内容如下</p>
+<ol start="4">
+<li>进入conda的rgi环境</li>
+</ol>
+<p>环境配置的截图参考各软件版本</p>
+<ol start="5">
+<li>运行rgi</li>
+</ol>
+<p>命令：
+rgi main -i MK613929.fasta -o rgi_MK613929</p>
+<p>结果：
+在原目录下生成了结果</p>
+<ol start="6">
+<li>运行natural-product-function</li>
+</ol>
+<p>命令：
+python3 cluster_function_prediction.py /hdata/tmp/seq/anotherANTISMASH/MK613929/MK613929.gbk /hdata/tmp/seq/anotherRGI/rgi_MK613929.txt</p>
+<p>结果：</p>
+<p>开荒记录
+*卡在了调不到sklearn的包</p>
+<p>*找不到训练集合</p>
+<p>-cluster_function_prediction.py要放在环境里（right，程序会在环境里面找其他模块, 比如：cluster_function_prediction_tools.py）</p>
+<p>*程序运行以后找不到训练集数据，见报错“did not find file containing training data, please keep script located in directory downloaded from github”
+*现在： python3 cluster_function_prediction.py /hdata/tmp/seq/anotherANTISMASH/MK613929/MK613929.gbk /hdata/tmp/seq/anotherRGI/rgi_MK613929.txt， 任然跑不通。不是缺模块，是程序找不到 训练集数据
+*github (
+<a href="https://github.com/allie-walker/Natural-product-function">https://github.com/allie-walker/Natural-product-function</a>)的Readme介绍
+， tranining data 在目录RGI_output下面。和 antiSMASH_output</p>
+<p>*另外，运行的时候，说： ./cluster_function_prediction.py:159: DeprecationWarning: &lsquo;U&rsquo; mode is deprecated
+record = SeqIO.read(open(antismash_infilename, &lsquo;rU&rsquo;),&ldquo;genbank&rdquo;)
+这个 ‘rU&rsquo;  模式已经不用了？有没有替代的？</p>
+<p>‘rU&rsquo;改成&rsquo;r&rsquo;应该就可以了</p>
+<p>计算结果显示，
+/home/dming/test/npf/Natural-product-function/readInputFiles.py:17: UserWarning: no pfam features found, make sure to run antiSMASH with &ndash;fullhmmer option
+warnings.warn(&ldquo;no pfam features found, make sure to run antiSMASH with &ndash;fullhmmer option&rdquo;)
+/home/dming/test/npf/Natural-product-function/readInputFiles.py:18: UserWarning: if antiSMASH was run with fullhmmer then this BGC does not have enough similarity to the training set for useful predictions
+warnings.warn(&ldquo;if antiSMASH was run with fullhmmer then this BGC does not have enough similarity to the training set for useful predictions&rdquo;)
+/home/dming/test/npf/Natural-product-function/readInputFiles.py:20: UserWarning: no resistance features found, double check RGI input file
+warnings.warn(&ldquo;no resistance features found, double check RGI input file&rdquo;)</p>
+<p>npf 提示（警告）说，找不到 跟查询序列相似的 已知蛋白家族、和跟已知抗性基因库相似的自抗基因。</p>
+<p>重跑antismash
+antismash /hdata/tmp/seq/MK613929.fasta &ndash;genefinding-tool prodigal &ndash;fullhmmer</p>
+<p>ylu@hilbert:/hdata/tmp/seq/antismash_MK$ antismash /hdata/tmp/seq/MK613929.fasta &ndash;genefinding-tool prodigal &ndash;fullhmmer</p>
+<p>重跑rgi
+cd /hdata/tmp/seq/rgi_MK/</p>
+<p>conda activate rgi</p>
+<p>rgi main -i /hdata/tmp/seq/MK613929.fasta -o rgi_MK613929</p>
+<p>重跑Natural-product-function
+python3 cluster_function_prediction.py /hdata/tmp/seq/antismash_MK/MK613929/MK613929.gbk /hdata/tmp/seq/rgi_MK/rgi_MK613929.txt</p>
+<p>认知&amp;评价
+npf 可能是专门针对 筛查 （新？）抗生素 而开发的。运行的例子，表明它基本上是在做这样的事情： 即在给定的基因组里面，找出可能的抗性基因，然后综合使用 card/pfam/efi 等工具判断其产物 是 抗生素等 概率有多大
+看起来，其筛查等能力应该没有超过 card 数据库力所能及的范围。不过，它倒是使用了现在很多 groups 用到的酶功能分析的工具 &mdash;-即EFI 工具&mdash;这一点还是值得学习的。换句话说，我们可以在后续的coding 中，使用EFI来提高对基因功能的注释的准确度和精度
+npf提高了一个综合使用 card数据库、特别是 EFI 库的方法，值得借鉴；这一点可以用到我们手头的抗性基因数据库构建/预测的工作中。</p>
+<p>官方教程
+Supplemental Computational Methods
+antiSMASH runs:
+We ran antiSMASH 4.0 on each cluster using the following command:
+antismash &ndash;verbose &ndash;outputfolder OUTPUT_FOLDER &ndash;statusfile status.txt &ndash; full-hmmer &ndash;borderpredict INPUT_FILE</p>
+<p>RGI runs:
+We ran RGI 3.2.1 on each cluster using the following command:
+rgi -i INPUT_FASTA_FILE -o OUTPUT_FILE &ndash;loose_criteria YES &ndash;verbose ON &ndash; num_threads 4</p>
+<p>Requirements to run prediction script:
+We have provided all code necessary to process training set input files and make predictions on novel clusters in a Jupyter notebook. Additionally, we have provided the script to make predictions on novel clusters as a command line application. All code is available here: <a href="https://github.com/allie-walker/Natural-product-function">https://github.com/allie-walker/Natural-product-function</a>. The code was developed to run in Python 3. The libraries required are Biopython, NumPy, scikit-learn, and Matplotlib (for Jupyter notebook code only). Below is a list of the exact versions used to generate data in this paper:
+Anaconda 4.9.0
+Python 3.8.3
+Biopython 1.77
+NumPy 1.18.5
+Scikit-learn 0.23.1
+Matplotlib 3.2.2</p>
+<p>Processing antiSMASH output files:
+A script for processing antiSMASH output files is available here: <a href="https://github.com/allie">https://github.com/allie</a>walker/Natural-product-function. We used Biopython’s SeqIO module to read in the genbank output files produced by antiSMASH. We iterated through features in the genbank records and counted the following features: PFAM, CDS motif, smCOG, and polyketide and non-ribosomal peptide monomer predictions. For PFAM features we only included PFAM annotations that had a score of at least 20. All annotations that appeared at least five times in the dataset were included in the final feature list.
+Processing RGI output files:
+A script for processing RGI output files is available here: <a href="https://github.com/allie-walker/Natural">https://github.com/allie-walker/Natural</a>product-function. We read in the text file produced by RGI and extracted the best hit and corresponding e-value for each best hit. E-values less than or equal to 0.1 were counted as the best hit. All resistant genes that appeared at least five times in the dataset were included in the final feature list.</p>
+
+    
+  </div>
+</div>
+
+  
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>
