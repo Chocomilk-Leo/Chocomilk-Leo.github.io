@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C&#39;s Blog</title>
-    <link>Chocomilk-Leo.github.io/</link>
-    <description>Recent content on C&#39;s Blog</description>
+    <title>tools on C&#39;s Blog</title>
+    <link>Chocomilk-Leo.github.io/tags/tools/</link>
+    <description>Recent content in tools on C&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="Chocomilk-Leo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="Chocomilk-Leo.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎来到 Hugo 世界</title>
       <link>Chocomilk-Leo.github.io/hello-world/</link>
@@ -23,15 +23,6 @@
       
       <guid>Chocomilk-Leo.github.io/hugo-single-link/</guid>
       <description>还是扒了木木哥主题样式 又搞了一下文章内链接，测试一下样式： 来一曲东北灭火朋克 2020-04-09 #music 个人喜好，奔走相告。 我一直喜欢的东北灭火朋克历时十五年，终于</description>
-    </item>
-    
-    <item>
-      <title>来一曲东北灭火朋克</title>
-      <link>Chocomilk-Leo.github.io/huo-zha-le/</link>
-      <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>Chocomilk-Leo.github.io/huo-zha-le/</guid>
-      <description>个人喜好，奔走相告。 我一直喜欢的东北灭火朋克历时十五年，终于发了新专辑了。</description>
     </item>
     
   </channel>

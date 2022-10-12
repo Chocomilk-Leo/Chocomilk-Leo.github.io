@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C&#39;s Blog</title>
-    <link>Chocomilk-Leo.github.io/</link>
-    <description>Recent content on C&#39;s Blog</description>
+    <title>Posts on C&#39;s Blog</title>
+    <link>Chocomilk-Leo.github.io/posts/</link>
+    <description>Recent content in Posts on C&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="Chocomilk-Leo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="Chocomilk-Leo.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎来到 Hugo 世界</title>
       <link>Chocomilk-Leo.github.io/hello-world/</link>
