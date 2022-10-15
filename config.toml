@@ -1,0 +1,31 @@
+baseURL = "<https://Chocomilk-Leo.github.io/>/"
+languageCode = "en-US"
+title = "C's Blog"
+theme = "hyde"
+# disqusShortname = ""
+hasCJKLanguage = true
+enableEmoji = true
+
+
+[permalinks]
+  posts = "/:filename/"
+
+[Menus]
+  main = [
+      {Name = "Archives", URL = "<https://Chocomilk-Leo.github.io/posts/>"},
+      {Name = "Tags", URL = "<https://Chocomilk-Leo.github.io/tags/>"},
+      {Name = "Photos", URL = "<https://Chocomilk-Leo.github.io/photos/>"}
+  ]
+
+[params]
+  # dir name of your blog content (default is `content/posts`)
+  contentTypeName = "posts"
+  # description about this website
+  description = "Finding Enthusiasm."
+
+[params.valine]
+  enable = false
+    appId = ''
+    appKey = ''
+    placeholder = '既然来了，那就留个痕迹吧~'
+    visitor = true
